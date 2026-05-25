@@ -7,6 +7,7 @@ typedef double Value;
 
 
 // Implementation of constant pool
+// Sequence of double
 typedef struct {
     int capacity;
     int count;

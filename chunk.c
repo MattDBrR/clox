@@ -4,7 +4,6 @@
 #include "memory.h"
 #include "value.h"
 
-
 void initChunk(Chunk *chunk){
     chunk->count = 0;
     chunk->capacity = 0;

@@ -7,7 +7,12 @@
 // VM instructions
 typedef enum{
     OP_CONSTANT,
+    OP_NEGATE,
     OP_RETURN,
+    OP_ADD, // Binary op
+    OP_SUBTRACT,
+    OP_MULTIPLY,
+    OP_DIVIDE,
 } OpCode;
 
 // Simply a wrapper around a dynamic array of bytes.
