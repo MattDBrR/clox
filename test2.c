@@ -1,6 +1,4 @@
 // IMPLEMENTATION OF THE VM
-//
-//
 
 #include <stdint.h>
 

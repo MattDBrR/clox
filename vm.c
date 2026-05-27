@@ -5,7 +5,7 @@
 #include "common.h"
 #include "debug.h"
 #include "value.h"
-
+#include "compiler.h"
 
 // DESIGN choice
 // static VM instance
@@ -19,8 +19,7 @@ void initVM(){
     resetStack();
 }
 
-void freeVM(){
-}
+void freeVM(){}
 
 void push(Value value){
     *vm.stackTop = value;
@@ -36,7 +35,6 @@ Value pop(){
 //
 static InterpretResult run() {
 #define READ_BYTE() (*vm.ip++)
-
 #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
 #define BINARY_OP(op) \
 do { \
@@ -67,7 +65,6 @@ for(;;){
         case OP_SUBTRACT: BINARY_OP(-); break;
         case OP_MULTIPLY: BINARY_OP(*); break;
         case OP_DIVIDE:   BINARY_OP(/); break;
-
         case OP_NEGATE: push(-pop()); break;
         case OP_RETURN:{
             printValue(pop());
@@ -81,8 +78,7 @@ for(;;){
 }
 
 // VM runs the chunk and respond with a value from the InterpretResult enum
-InterpretResult interpret(Chunk* chunk){
-    vm.chunk = chunk; // store
-    vm.ip = vm.chunk->code; // ip = instruction pointer
-    return run();
+InterpretResult interpret(const char* source){
+    compile(source); // Implement the compiler
+    return INTERPRET_OK;
 }
